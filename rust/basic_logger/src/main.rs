@@ -94,10 +94,9 @@ fn log(level: LogLevel, msg: &str) -> Result<(), io::Error> {
     let mut file = OpenOptions::new()
         .create(true)
         .append(true)
-        .open("app.log")
-        .unwrap();
+        .open("app.log")?;
 
-    file.write_all(final_msg.as_bytes()).unwrap();
+    file.write_all(final_msg.as_bytes())?;
 
     Ok(())
 }
