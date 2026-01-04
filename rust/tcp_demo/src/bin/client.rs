@@ -1,4 +1,4 @@
-use std::{io::{self, stdin, BufRead}, net::TcpStream};
+use std::{io::{self, stdin, BufRead, BufReader}, net::TcpStream};
 
 use tcp_demo::{read_message, send_message, SERVER_ADDR};
 
@@ -14,9 +14,12 @@ fn main() {
 fn run_client() -> io::Result<()> {
     println!("Connecting to {}...", SERVER_ADDR);
 
-    let mut stream = TcpStream::connect(SERVER_ADDR)?;
+    let stream = TcpStream::connect(SERVER_ADDR)?;
 
     println!("Connected! Type a message or (CTRL+C) to exit:");
+
+    let mut reader = BufReader::new(stream.try_clone()?);
+    let mut writer = stream;
 
     let stdin = stdin();
 
@@ -27,11 +30,15 @@ fn run_client() -> io::Result<()> {
             continue;
         }
 
-        send_message(&mut stream, &message)?;
+        send_message(&mut writer, &message)?;
 
-        let response = read_message(&mut stream)?;
-
-        println!("Server: {}", response.trim());
+        match read_message(&mut reader)? {
+            Some(reply) => println!("Server: {}", reply),
+            None => {
+                println!("Server disconnected");
+                break;
+            }
+        }
     }
 
     Ok(())
