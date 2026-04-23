@@ -41,14 +41,3 @@ impl Solution {
         prefix
     }
 }
-
-fn main() {
-    let strs: Vec<String> = vec!["dog", "racecar", "car"]
-        .into_iter()
-        .map(String::from)
-        .collect();
-
-    let result: String = Solution::longest_common_prefix(strs);
-
-    println!("{}", result);
-}

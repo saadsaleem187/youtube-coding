@@ -20,14 +20,6 @@
     Explanation: Reads 01 from right to left. Therefore it is not a palindrome.
 */
 
-fn main() {
-    let nums: Vec<i32> = vec![121, -121, 10, 12321];
-
-    for &n in &nums {
-        println!("{} -> {}", n, is_palindrome(n));
-    }
-}
-
 fn is_palindrome(mut x: i32) -> bool {
     if x < 0 {
         return false;
