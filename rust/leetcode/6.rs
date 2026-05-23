@@ -37,12 +37,3 @@ impl Solution {
         }
     }
 }
-
-fn main() {
-    println!("Example 1: {}", Solution::roman_to_int("III".to_string()));
-    println!("Example 2: {}", Solution::roman_to_int("LVIII".to_string()));
-    println!(
-        "Example 3: {}",
-        Solution::roman_to_int("MCMXCIV".to_string())
-    );
-}
