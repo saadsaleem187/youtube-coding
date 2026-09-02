@@ -60,7 +60,7 @@ impl Database {
     pub fn delete_todo(&self, id: i64) -> Result<()> {
         self.connection.execute(
             "
-            DELETE FROM todos WHERE id = ?1,
+            DELETE FROM todos WHERE id = ?1
             ",
             params![id],
         )?;
