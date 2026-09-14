@@ -10,4 +10,10 @@ fn main() -> eframe::Result<()> {
             .with_min_inner_size([900.0, 600.0]),
         ..Default::default()
     };
+
+    eframe::run_native(
+        "Notes App",
+        native_options,
+        Box::new(|_cc| Ok(Box::new(NotesApp::new(database)))),
+    )
 }

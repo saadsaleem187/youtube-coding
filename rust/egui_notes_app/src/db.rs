@@ -18,7 +18,7 @@ impl Database {
                 content TEXT NOT NULL,
                 pinned INTEGER NOT NULL DEFAULT 0,
                 created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
-                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
             )
             ",
             [],
@@ -69,11 +69,11 @@ impl Database {
             SET
                 title = ?1,
                 content = ?2,
-                updated_at = CURRENT_TIMESTAMP,
+                updated_at = CURRENT_TIMESTAMP
             WHERE
                 id = ?3
             ",
-            params![id, title, content],
+            params![title, content, id],
         )?;
 
         Ok(())
