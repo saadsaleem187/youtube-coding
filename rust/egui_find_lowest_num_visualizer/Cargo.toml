@@ -1,0 +1,8 @@
+[package]
+name = "egui_find_lowest_num_visualizer"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+eframe = "0.36.2"
+rand = "0.10.3"
